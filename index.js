@@ -31,7 +31,7 @@ async function main() {
   try {
 
     // @ts-ignore
-    await mongoose.connect(db_url);
+    await mongoose.connect(process.env.DB_CONNECTION);
     console.log("✅ MongoDB connection established");
   } catch (err) {
     console.error("❌ MongoDB connection failed:", err);
@@ -44,7 +44,7 @@ main();
 // ---------- App Configuration ----------
 
 const store = MongoStore.create({
-  mongoUrl:db_url,
+  mongoUrl:process.env.DB_CONNECTION,
   crypto:{
     // @ts-ignore
     secret:process.env.MY_SECRET,

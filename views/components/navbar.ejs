@@ -24,6 +24,7 @@
         </a>
       </li>
 
+      <% if(!curuser){ %>
       <li class="nav-item">
         <a class="nav-link fw-semibold" href="/sign">Sign up</a>
       </li>
@@ -31,10 +32,12 @@
         <a class="nav-link fw-semibold" href="/login">Log in</a>
       </li>
    
+<% } %>
+      <% if(curuser){ %>
       <li class="nav-item">
         <a class="nav-link fw-semibold" href="/logout">Logout</a>
       </li>
-   
+   <% } %>
 
     </ul>
 
