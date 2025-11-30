@@ -112,9 +112,9 @@ app.use('/listings',listingRouter)
 app.use('/listings/:id/review',reviewRouter)
 app.use('/',userRouter);
 
-// app.get("/", (req, res) => {
-//   res.send("You reached the home page");
-// });
+app.get("/", (req, res) => {
+  res.redirect('/listings')
+});
 
 // ---------- 404 Handler ----------
 app.use( (req, res, next) => {
