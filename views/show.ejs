@@ -1,0 +1,114 @@
+<% layout("/layouts/boilerplate") -%>
+
+<style>
+  .view-listing-image {
+    width: 100%;
+    height: 350px; /* set consistent height for all cards */
+    object-fit: cover; /* ensures the image fills the box and stays proportional */
+    border-radius: 10px; /* optional for smooth corners */
+  }
+
+  /* Optional: if cards differ in width, fix that too */
+  .view-listing-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
+
+<body>
+  <div class="view-listing-container">
+    <h3 class="view-listing-heading">Listing Details :</h3>
+    <div class="view-listing-card">
+      <img src="<%= data.image.url %>" alt="<%= data.title %>" class="view-listing-image" />
+      <p> Owned by : <strong><%=data.owner.username%></strong></p>
+      <ul class="view-details-list">
+        <li><strong>Title:</strong> <%= data.title %></li>
+        <li><strong>Description:</strong> <%= data.description %></li>
+        <li><strong>Price:</strong> ₹ <%= data.price.toLocaleString("en-IN") %></li>
+        <li><strong>Location:</strong> <%= data.location %></li>
+        <li><strong>Country:</strong> <%= data.country %></li>
+      </ul>
+
+      <div class="view-actions">
+        <a href="/listings/<%= data._id %>/edit" class="view-btn view-edit-btn">Edit</a>
+        <form method="POST" action="/listings/<%= data._id %>?_method=DELETE" class="view-delete-form">
+          <button type="submit" class="view-btn view-delete-btn">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leave a Review Form -->
+
+  <% if(curuser){%>
+  <div class="container my-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h4 class="card-title mb-4 text-center fw-semibold">Leave a Review</h4>
+        <form action="/listings/<%= data._id%>/review" method="POST" novalidate class="needs-validation">
+          <div class="mb-4">
+            <label for="rating" class="form-label fw-medium">Your Rating:</label>
+            <fieldset class="starability-heartbeat">
+  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+          </div>
+          <div class="mb-4">
+            <label for="comment" class="form-label fw-medium">Your Comment</label>
+            <textarea class="form-control shadow-sm" id="comment" rows="4" placeholder="Write your review..."
+              name="review[comment]" required></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4 py-2">
+              <i class="bi bi-send"></i> Submit Review
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%}%>
+
+<!-- Display Existing Reviews -->
+<div class="container my-5 ">
+  <h4 class="mb-4 text-center fw-semibold">Reviews</h4>
+
+  <% if (data.reviews && data.reviews.length > 0) { %>
+    <% data.reviews.map((review) => { %>
+      
+      <div class="card mb-3 shadow-sm border-0">
+        <div class="card-body">
+          <strong><p>Reviewed by : <i>#<%=review.author.username %></i></p></strong>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-warning">
+              <% for (let i = 1; i <= 5; i++) { %>
+                <i class="bi <%= i <= review.rating ? 'bi-star-fill' : 'bi-star' %>"></i>
+              <% } %> 
+            </span>
+          </div>
+          <p class="mb-2"><%= review.comment %></p>
+          <small class="text-muted">
+            Posted on <%= new Date(review.createdAt).toLocaleDateString("en-IN") %>
+          </small><form action="/listings/<%=data._id%>/review/<%=review._id%>?_method=DELETE" method="post">
+          <button class="btn btn-dark mt-2">Delete</button>
+        </form>
+        </div>
+        
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p class="text-center text-muted">No reviews yet. Be the first to leave one!</p>
+  <% } %>
+</div>
+
+
+</body>

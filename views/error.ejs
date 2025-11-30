@@ -1,0 +1,30 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+
+
+<body class="err-body">
+  <nav class="err-navbar">
+    <div class="err-container">
+      <div class="err-logo">
+        <span>🧭</span> Wanderlust
+      </div>
+      <ul class="err-nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/listings">Listings</a></li>
+        <li><a href="/listings/new">Create New</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="err-main">
+    <div class="err-card">
+      <img src="/error.png" alt="Error" class="err-image" />
+      <h1><%= status %></h1>
+      <p class="err-message"><%= message %></p>
+      <p class="err-subtext">Oops! Something went wrong — let’s get you back on track.</p>
+      <div class="err-buttons">
+        <a href="/listings" class="err-btn-primary">Back to Listings</a>
+        <a href="/" class="err-btn-outline">Go Home</a>
+      </div>
+    </div>
+  </main>
+</body>
