@@ -110,7 +110,7 @@ app.use((req,res,next)=>{
 
 app.use('/listings',listingRouter)
 app.use('/listings/:id/review',reviewRouter)
-app.use('/user',userRouter);
+app.use('/',userRouter);
 
 // app.get("/", (req, res) => {
 //   res.send("You reached the home page");
