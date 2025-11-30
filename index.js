@@ -24,8 +24,6 @@ const User = require('./models/user.js')
 const app = express();
 const port = 9090;
 
-const db_url = process.env.DB_CONNECTION;
-
 // ---------- Database Connection ----------
 async function main() {
   try {
@@ -112,7 +110,7 @@ app.use((req,res,next)=>{
 
 app.use('/listings',listingRouter)
 app.use('/listings/:id/review',reviewRouter)
-app.use('/',userRouter);
+app.use('/user',userRouter);
 
 // app.get("/", (req, res) => {
 //   res.send("You reached the home page");
