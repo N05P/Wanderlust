@@ -30,6 +30,7 @@ const db_url = process.env.DB_CONNECTION;
 async function main() {
   try {
 
+    // @ts-ignore
     await mongoose.connect(db_url);
     console.log("✅ MongoDB connection established");
   } catch (err) {
