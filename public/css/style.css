@@ -80,8 +80,10 @@ a.nav-link[href="/listings"] {
     gap: 10px;
     border: 1px solid #bbb;
     padding: 8px 16px;
+    margin-bottom:2vw;
     border-radius: 25px;
     font-size: 14px;
+    font-weight: 600;
     color: #444;
 }
 
@@ -242,8 +244,9 @@ body {
 }
 
 .card-text {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 
 /* === Responsive tweaks === */
@@ -481,6 +484,11 @@ textarea:focus,
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+
+.price-base{
+  font-weight: 400;
 }
 
 /* ===== Row Layout (Price + Country) ===== */
