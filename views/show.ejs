@@ -20,7 +20,7 @@
     <h3 class="view-listing-heading">Listing Details :</h3>
     <div class="view-listing-card">
       <img src="<%= data.image.url %>" alt="<%= data.title %>" class="view-listing-image" />
-      <p> Owned by : <strong><%=data.owner%></strong></p>
+      <p> Owned by : <strong><%=data.owner.username%></strong></p>
       <ul class="view-details-list">
         <li><strong>Title:</strong> <%= data.title %></li>
         <li><strong>Description:</strong> <%= data.description %></li>
