@@ -29,7 +29,9 @@ async function main() {
   try {
 
     // @ts-ignore
-    await mongoose.connect(process.env.DB_CONNECTION);
+    await mongoose.connect(process.env.DB_CONNECTION,{
+      dbName:'Wanderlust'
+    });
     console.log("✅ MongoDB connection established");
   } catch (err) {
     console.error("❌ MongoDB connection failed:", err);
