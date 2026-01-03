@@ -3,9 +3,27 @@ const ExpressError = require('../utils/ExpressError')
 
 // @ts-ignore
 module.exports.index = async (req, res) => {
-  const data = await Listing.find({});
-  res.render("index.ejs", { data });
-}
+  const { search } = req.query;
+
+  console.log(search)
+  let data;
+
+  if (search && search.trim() !== "") {
+    data = await Listing.find({
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+        { country: { $regex: search, $options: "i" } }
+      ]
+    });
+  } else {
+    data = await Listing.find({});
+  }
+
+  res.render("index.ejs", { data, search });
+};
+
+
 
 // @ts-ignore
 module.exports.newlisting = (req, res) => {

@@ -9,11 +9,20 @@
 
     <!-- CENTER SEARCH BAR -->
     <div class="search-box mx-auto d-none d-lg-flex">
-      <input type="text" class="form-control search-input" placeholder="Search destinations">
-      <button class="btn ms-3" style="border: 1px solid white; background-color: #fe424d;">
-        <i class="fa-solid fa-magnifying-glass me-1" style="color: white;"></i>
-      </button>
-    </div>
+  <form class="d-flex" action="/listings" method="GET">
+    <input
+      type="text"
+      name="search"
+      class="form-control search-input"
+      placeholder="Search destinations"
+      value="<%= typeof search !== 'undefined' ? search : '' %>"
+    >
+    <button class="btn ms-3" style="border: 1px solid white; background-color: #fe424d;">
+      <i class="fa-solid fa-magnifying-glass me-1" style="color: white;"></i>
+    </button>
+  </form>
+</div>
+
 
     <!-- RIGHT SIDE -->
     <ul class="navbar-nav ms-auto align-items-center gap-3">
