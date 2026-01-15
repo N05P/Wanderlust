@@ -1,11 +1,12 @@
 **🌍 WanderLust — Full-Stack Travel Marketplace**
 
 **📌 Project Overview**
+
 WanderLust is a full-stack travel marketplace that empowers users to discover unique stays and host their own properties with ease. Built using a scalable architecture, the platform ensures secure user interactions, smooth data handling, and global accessibility through live deployment.
 
 **✨ Key Features**
 
-🏠** Property Hosting**
+**🏠 Property Hosting**
 Users can become hosts by listing their own properties through a clean and intuitive custom interface.
 
 **🔍 Explore Listings**
